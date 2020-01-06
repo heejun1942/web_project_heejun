@@ -1,0 +1,74 @@
+<!-- 시간지나면 비활성화 && 예약이 찼으면 비활성화됨 -->
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style>
+label span{
+	display:inline-block;
+	border: 1px solid #8bb4b5;
+	width: 4.8rem;
+    padding: 0.3rem 0;
+    text-align: center;
+    background-color: #e1eded;
+}
+input[type=radio]{
+	display: none;
+}
+
+input[type='radio']:checked + span {
+	background-color: #9bc8c9;
+}
+
+input[type='radio']:disabled + span {
+	border: 1px solid #d6d4d4;
+	color: lightgray;
+	background: #f8f8f8;
+}
+
+
+</style>
+
+
+</head>
+<body>
+	<form method="post" action="/store/1">
+		<input type="text" name="bookingStore"><br>
+		<input type="text" name="userId"><br>
+		<input type="text" name="password"><br><br><br>
+		<div>
+		<div th:each="bookedTime : ${booking.time}">
+		<label for="time8"><input type="radio" name="bookingTime" value="8" id="time8" th:attr="disabled= ${bookedTime}==8 or ${nowHour}>=8 ? true : False"><span>8:00</span></label>
+		<label for="time9"><input type="radio" name="bookingTime" value="9" id="time9" th:attr="disabled= ${bookedTime}==9 or ${nowHour}>=9 ? true : False"><span>9:00</span></label>		
+		<label for="time10"><input type="radio" name="bookingTime" value="10" id="time10" th:attr="disabled= ${bookedTime}==10 or ${nowHour}>=10 ? true : False"><span>10:00</span></label>
+		<label for="time11"><input type="radio" name="bookingTime" value="11" id="time11" th:attr="disabled= ${bookedTime}==11 ? true : False"><span>11:00</span></label>
+		<label for="time12"><input type="radio" name="bookingTime" value="12" id="time12" th:attr="disabled= ${bookedTime}==12 ? true : False"><span>12:00</span></label>
+		
+		
+		
+		</div>
+		</div>
+		<br>
+		<input type="button" value="예약" onclick="run()">
+	</form>
+	[[${nowHour}]]
+	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script>		
+		function run(){
+			$("form").submit();
+			return false;
+		}
+		
+		$(document).ready(function() {
+			$("input[type-radio]:checked").parent().css('background', 'blue');
+		});
+
+		
+		
+	</script>
+</body>
+</html>

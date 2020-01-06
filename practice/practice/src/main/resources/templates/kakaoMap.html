@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form method="get" action="/getkakao">
+	위치: <input type="text" name="lacation">
+	<button id="laciton">검색</button>
+	</form>
+	
+	<script>
+		$('#laction').click(function(){
+			$("form").submit();
+			return false;
+		});
+	</script>
+</body>
+</html>
+

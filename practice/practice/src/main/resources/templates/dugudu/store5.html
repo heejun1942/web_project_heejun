@@ -1,0 +1,83 @@
+<!-- th반복문으로 전체 시간 생성함 -->
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style>
+#btnBox label span{
+	display:inline-block;
+	border: 1px solid #8bb4b5;
+	width: 4.8em;
+    padding: 0.42em 0;
+    text-align: center;
+    background-color: #e1eded;
+}
+#btnBox input[type=radio]{
+	display: none;
+}
+
+#btnBox input[type='radio']:checked + span {
+	background-color: #9bc8c9;
+}
+
+#btnBox input[type='radio']:disabled + span {
+	border: 1px solid #d6d4d4;
+	color: lightgray;
+	background: #f8f8f8;
+}
+
+#btnBox input[type='button']{
+	width: 100%;
+	padding: ;
+}
+
+#btnBox {
+	width:20.8em;
+}
+
+
+</style>
+
+
+</head>
+<body>
+	<form method="post" action="/store/1">
+		<input type="text" name="bookingStore"><br>
+		<input type="text" name="userId"><br>
+		<input type="text" name="password"><br><br><br>
+		<div id="btnBox">
+			<div class="btnBox" th:each="hour : ${#numbers.sequence(8,16,4)}">
+			<th:block th:each="bookedTime : ${booking.time}">
+			<label th:for="${'time'+hour}"><input type="radio" name="bookingTime" th:value="${hour}" th:id="${'time'+hour}" th:attr="disabled= ${bookedTime}==${hour} or ${nowHour}>=${hour} ? true : False"><span>[[${hour%13}]]:00</span></label>
+			<label th:for="${'time'+hour+1}"><input type="radio" name="bookingTime" th:value="${hour+1}" th:id="${'time'+hour+1}" th:attr="disabled= ${bookedTime}==${hour+1} or ${nowHour}>=${hour+1} ? true : False"><span>[[${(hour+1)%13+(hour+1)/13}]]:00</span></label>		
+			<label th:for="${'time'+hour+2}"><input type="radio" name="bookingTime" th:value="${hour+2}" th:id="${'time'+hour+2}" th:attr="disabled= ${bookedTime}==${hour+2} or ${nowHour}>=${hour+2} ? true : False"><span>[[${(hour+2)%13+(hour+1)/13}]]:00</span></label>
+			<label th:for="${'time'+hour+3}"><input type="radio" name="bookingTime" th:value="${hour+3}" th:id="${'time'+hour+3}" th:attr="disabled= ${bookedTime}==${hour+3} or ${nowHour}>=${hour+3} ? true : False"><span>[[${(hour+3)%13+(hour+1)/13}]]:00</span></label>		
+			</th:block>
+			</div>
+		<br>
+		<input type="button" value="예약" onclick="run()">
+		</div>
+	</form>
+	
+	
+	
+	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script>		
+		function run(){
+			$("form").submit();
+			return false;
+		}
+		
+		$(document).ready(function() {
+			$("input[type-radio]:checked").parent().css('background', 'blue');
+		});
+
+		
+		
+	</script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form method="get" action="/getNaver">
+		<input type="text" name="text">
+		<button id="button">번역</button>
+	</form>
+	<p id="result"></p>
+
+	<script>
+		$("#button").click(function(){
+			$("form").submit();
+			return false;
+		});
+	</script>
+
+</body>
+</html>

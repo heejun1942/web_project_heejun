@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form method="post" action="/store/2">
+		<input type="text" name="bookingStore">
+		<input type="text" name="userId">
+		<input type="text" name="password"><br>
+		<input type="radio" name="bookingTime" value="time8" id="time8">8시
+		<input type="radio" name="bookingTime" value="time9">9시
+		<input type="radio" name="bookingTime" value="time10">10시
+		<input type="radio" name="bookingTime" value="time11">11시
+		<input type="radio" name="bookingTime" value="time12">12시
+		<button id="bookingBtn" >예약</button>
+	</form>
+
+	<script>
+	$("#bookingBtn").click(function(){
+		$("input[type=radio]").attr('disabled',true);
+	//	("form").submit();
+	})
+	</script>
+</body>
+</html>

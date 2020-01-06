@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div th:each = "movie : ${movies['boxOfficeResult']['weeklyBoxOfficeList']}">
+<h3><span th:text="${movie.rank}"></span> 위 <span th:text="${movie.movieNm}"></span></h3>
+<p>개봉일: <span th:text="${movie.openDt}"></span></p>
+<br>
+</div>
+</body>
+</html>
